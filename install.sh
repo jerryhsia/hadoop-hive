@@ -4,7 +4,6 @@ cd /tmp
 
 cat /tmp/env >> /root/.zshrc
 cat /tmp/env >> /root/.bashrc
-
 source /root/.bashrc
 
 prepare() {
