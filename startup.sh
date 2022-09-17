@@ -28,7 +28,13 @@ nohup hive --service hiveserver2 >> /root/hiveserver2.log 2>&1 &
 sleep 10s
 echo -e "\e[32mHive started and testing...\e[0m"
 if [ "$?" = "0" ]; then
-    hive -S -e "show databases;"
+    if [ ! -f "/root/.locksql" ]; then
+        echo "init titanic data..."
+        hive -S -e "source /root/titanic.sql;"
+        touch /root/.locksql
+    fi
+
+    hive -S -e "show tables;"
     echo -e "\e[32mEverything seems OK!\e[0m"
 else
     echo -e "\e[31mOops.Something wrongs!\e[0m" 1>&2
