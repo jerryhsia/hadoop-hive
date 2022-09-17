@@ -2,8 +2,10 @@
 
 cd /tmp
 
-cat /tmp/bashrc >> /root/.zshrc
-cat /tmp/bashrc >> /root/.bashrc
+cat /tmp/env >> /root/.zshrc
+cat /tmp/env >> /root/.bashrc
+
+source /root/.bashrc
 
 prepare() {
 
@@ -69,18 +71,18 @@ install_hadoop() {
 		#arm64
 		echo "os: arm64"
 
-		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-3.3.0-aarch64.tar.gz
-		tar -xf hadoop-3.3.0-aarch64.tar.gz -C /opt
+		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-${HADOOP_VERSION}-aarch64.tar.gz
+		tar -xf hadoop-${HADOOP_VERSION}-aarch64.tar.gz -C /opt
 		
 	else
 		#amd64
 		echo "os: amd64"
 
-		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-3.3.0.tar.gz
-		tar -xf hadoop-3.3.0.tar.gz -C /opt
+		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-${HADOOP_VERSION}.tar.gz
+		tar -xf hadoop-${HADOOP_VERSION}.tar.gz -C /opt
 		
 	fi
-	ln -s /opt/hadoop-3.3.0 /opt/hadoop
+	ln -s /opt/hadoop-${HADOOP_VERSION} /opt/hadoop
 
 	cp core-site.xml hdfs-site.xml mapred-site.xml yarn-site.xml /opt/hadoop/etc/hadoop/
 }
@@ -88,9 +90,9 @@ install_hadoop() {
 install_hive() {
 	cd /tmp
 
-	wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/apache-hive-3.1.0-bin.tar.gz
-	tar -xf apache-hive-3.1.0-bin.tar.gz -C /opt
-	ln -s /opt/apache-hive-3.1.0-bin /opt/hive
+	wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/apache-hive-${HIVE_VERSION}-bin.tar.gz
+	tar -xf apache-hive-${HIVE_VERSION}-bin.tar.gz -C /opt
+	ln -s /opt/apache-hive-${HIVE_VERSION}-bin /opt/hive
 
 	cp hive-site.xml /opt/hive/conf
 	cp mysql-connector-java-5.1.47.jar /opt/hive/lib

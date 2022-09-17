@@ -30,11 +30,11 @@ echo -e "\e[32mHive started and testing...\e[0m"
 if [ "$?" = "0" ]; then
     if [ ! -f "/root/.locksql" ]; then
         echo "init titanic data..."
-        hive -S -e "source /root/titanic.sql;"
+        hive -e "source /root/titanic.sql;"
         touch /root/.locksql
     fi
 
-    hive -S -e "show tables;"
+    hive -e "show tables;"
     echo -e "\e[32mEverything seems OK!\e[0m"
 else
     echo -e "\e[31mOops.Something wrongs!\e[0m" 1>&2

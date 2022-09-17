@@ -5,7 +5,7 @@ WORKDIR /root
 
 COPY startup.sh titanic.sql /root/
 
-COPY lib/* conf/*.xml install.sh bashrc /tmp
+COPY lib/* conf/*.xml install.sh env /tmp
 # COPY tmp/* /tmp
 
 RUN /tmp/install.sh && rm -rf /tmp/install.sh 2>&1

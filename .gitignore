@@ -1,2 +1,7 @@
 /run.sh
 /tmp
+/bashrc
+/env
+/run_v1.sh
+/run_v2.sh
+/run_v3.sh
