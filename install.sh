@@ -69,19 +69,19 @@ install_hadoop() {
 		#arm64
 		echo "os: arm64"
 
-		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-2.6.0.tar.gz
-		tar -xf hadoop-2.6.0.tar.gz -C /opt
+		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-2.7.0.tar.gz
+		tar -xf hadoop-2.7.0.tar.gz -C /opt
 		
 	else
 		#amd64
 		echo "os: amd64"
 
-		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-2.6.0.tar.gz
-		tar -xf hadoop-2.6.0.tar.gz -C /opt
+		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-2.7.0.tar.gz
+		tar -xf hadoop-2.7.0.tar.gz -C /opt
 		
 	fi
 	sleep 3
-	ln -s /opt/hadoop-2.6.0 /opt/hadoop
+	ln -s /opt/hadoop-2.7.0 /opt/hadoop
 
 	cp core-site.xml hdfs-site.xml mapred-site.xml yarn-site.xml /opt/hadoop/etc/hadoop/
 }
