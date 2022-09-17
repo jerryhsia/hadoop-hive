@@ -69,19 +69,19 @@ install_hadoop() {
 		#arm64
 		echo "os: arm64"
 
-		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-3.3.1-aarch64.tar.gz
-		tar -xf hadoop-3.3.1-aarch64.tar.gz -C /opt
+		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-2.6.0.tar.gz
+		tar -xf hadoop-2.6.0.tar.gz -C /opt
 		
 	else
 		#amd64
 		echo "os: amd64"
 
-		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-3.3.1.tar.gz
-		tar -xf hadoop-3.3.1.tar.gz -C /opt
+		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-2.6.0.tar.gz
+		tar -xf hadoop-2.6.0.tar.gz -C /opt
 		
 	fi
 	sleep 3
-	ln -s /opt/hadoop-3.3.1 /opt/hadoop
+	ln -s /opt/hadoop-2.6.0 /opt/hadoop
 
 	cp core-site.xml hdfs-site.xml mapred-site.xml yarn-site.xml /opt/hadoop/etc/hadoop/
 }
@@ -89,9 +89,9 @@ install_hadoop() {
 install_hive() {
 	cd /tmp
 
-	wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/apache-hive-3.1.2-bin.tar.gz
-	tar -xf apache-hive-3.1.2-bin.tar.gz -C /opt
-	ln -s /opt/apache-hive-3.1.2-bin /opt/hive
+	wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/apache-hive-2.1.0-bin.tar.gz
+	tar -xf apache-hive-2.1.0-bin.tar.gz -C /opt
+	ln -s /opt/apache-hive-2.1.0-bin /opt/hive
 
 	cp hive-site.xml /opt/hive/conf
 	cp mysql-connector-java-5.1.47.jar /opt/hive/lib
