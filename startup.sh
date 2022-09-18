@@ -25,12 +25,18 @@ hdfs dfsadmin -safemode leave
 nohup hive --service metastore >> /root/metastore.log 2>&1 &
 nohup hive --service hiveserver2 >> /root/hiveserver2.log 2>&1 &
 
-sleep 10s
-echo -e "\e[32mHive started and testing...\e[0m"
 if [ "$?" = "0" ]; then
+    echo -e "\e[32mHive started and testing...\e[0m"
+    sleep 10s
     if [ ! -f "/root/.locksql" ]; then
-        echo "init titanic data..."
+        echo "init data..."
         hive -e "source /root/titanic.sql;"
+
+        if [ -f "/opt/hive/examples/files/kv2.txt" ];then
+            hive -e "CREATE TABLE invites (foo INT, bar STRING) PARTITIONED BY (ds STRING);"
+            hive -e "LOAD DATA LOCAL INPATH '/opt/hive/examples/files/kv2.txt' OVERWRITE INTO TABLE invites PARTITION (ds='2022');"
+        fi
+
         touch /root/.locksql
     fi
 

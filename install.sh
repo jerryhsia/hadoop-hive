@@ -70,8 +70,15 @@ install_hadoop() {
 		#arm64
 		echo "os: arm64"
 
-		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-${HADOOP_VERSION}-aarch64.tar.gz
-		tar -xf hadoop-${HADOOP_VERSION}-aarch64.tar.gz -C /opt
+		DOWNLOAD_VERSION=$HADOOP_VERSION
+
+		echo $HADOOP_VERSION | grep -P '^3'
+		if [ "$?" = "0" ];then
+			DOWNLOAD_VERSION="${HADOOP_VERSION}-aarch64"
+		fi
+
+		wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/hadoop-${DOWNLOAD_VERSION}.tar.gz
+		tar -xf hadoop-${DOWNLOAD_VERSION}.tar.gz -C /opt
 		
 	else
 		#amd64
@@ -91,6 +98,7 @@ install_hive() {
 
 	wget --no-check-certificate https://ai-platform-package.gz.bcebos.com/bigdata/apache-hive-${HIVE_VERSION}-bin.tar.gz
 	tar -xf apache-hive-${HIVE_VERSION}-bin.tar.gz -C /opt
+	chown -R root:root /opt/apache-hive-${HIVE_VERSION}-bin
 	ln -s /opt/apache-hive-${HIVE_VERSION}-bin /opt/hive
 
 	cp hive-site.xml /opt/hive/conf
