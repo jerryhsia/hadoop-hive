@@ -1,6 +1,7 @@
 # hadoop-hive
 
 | TAG | HADOOP VERSION | HIVE VERSION |
+| ---- | ---- | ---- |
 | arm64_v0/amd64_v0 | 2.7.0 | 0.14.0 |
 | arm64_v1/amd64_v1 | 2.7.0 | 1.2.0 |
 | arm64_v2/amd64_v2 | 2.7.0 | 2.1.0 |
