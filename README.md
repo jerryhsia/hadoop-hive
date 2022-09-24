@@ -9,13 +9,14 @@
 
 ```bash
 docker run -itd --name hive3 --privileged=true \
-     -p 8714:8088 \
-     -p 8722:8020 \
-     -p 8770:9870 \
-     -p 8719:10000 \
-     -p 8712:10002 \
-     -v /etc/localtime:/etc/localtime \
-     jerry9916/hadoop-hive:arm64_v3 /usr/sbin/init
+    -p 8714:8088 \
+    -p 8783:9083 \
+    -p 8722:8020 \
+    -p 8770:9870 \
+    -p 8719:10000 \
+    -p 8712:10002 \
+    -v /etc/localtime:/etc/localtime \
+    jerry9916/hadoop-hive:arm64_v3 /usr/sbin/init
 
 # 进入容器
 docker exec -it hive3 bash
